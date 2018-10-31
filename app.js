@@ -4,7 +4,7 @@ var express = require('express'),
     cors = require('cors');
 
 // var events = require('./events');
-// var categoryCtrl = require('./categoryController');
+var bookingController = require('./controllers/bookingController');
 
 var app = express();
 
@@ -18,14 +18,7 @@ app.use(cors());
 // WS
 // require('./ws');
 
-// app.use('/categories', categoryCtrl);
-
-app.get('/', (req, res) =>{
-    // req.json({
-    //     mgs: 'Welcome to BroCar!'
-    // });
-    res.send('Hello World!');
-})
+app.use('/bookings', bookingController);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
