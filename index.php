@@ -14,6 +14,19 @@ switch ($page) {
 	case 'booking-list':
 		include($_SERVER['DOCUMENT_ROOT'] . '/views/booking-list.php');
 		break;
+
+	case 'login':
+		include($_SERVER['DOCUMENT_ROOT'] . '/views/login.php');
+		break;
+
+	case 'register':
+		include($_SERVER['DOCUMENT_ROOT'] . '/views/register.php');
+		break;
+
+	case 'app1':
+        include($_SERVER['DOCUMENT_ROOT'] . '/views/app1.php');
+        break;
+
 	default:
 		// code...
 		break;

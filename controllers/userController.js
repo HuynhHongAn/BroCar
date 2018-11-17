@@ -14,15 +14,8 @@ router.get('/', (req, res) => {
 		})
 })
 
-router.post('/create', (req, res) =>{
-	bookingRepo.create(req.body)
-		.then(rows => {
-			res.json(rows);
-		}).catch(err => {
-			console.log(err);
-			res.statusCode = 500;
-			res.end('View error log on console');
-		})
+router.get('/create', (req, res) =>{
+
 })
 
 module.exports = router;

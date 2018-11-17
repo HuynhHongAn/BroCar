@@ -5,6 +5,7 @@ var express = require('express'),
 
 // var events = require('./events');
 var bookingController = require('./controllers/bookingController');
+var userController = require('./controllers/userController')
 
 var app = express();
 
@@ -19,6 +20,8 @@ app.use(cors());
 // require('./ws');
 
 app.use('/bookings', bookingController);
+
+app.use('/users', userController);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
