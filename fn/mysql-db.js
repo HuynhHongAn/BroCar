@@ -1,24 +1,57 @@
 var mysql = require('mysql');
+var opts = require('../fn/opts');
 
 var createConnection = () => {
     return mysql.createConnection({
-    	host: '127.0.0.1',
-    	port: '8889',
-    	user: 'root',
-    	password: 'root',
-    	database: 'brocar_db'
+        host: opts.DB.HOST,
+        port: opts.DB.PORT,
+        user: opts.DB.USER,
+        password: opts.DB.PWD,
+        database: opts.DB.DB_NAME
     });
 }
 
-exports.load = sql => {
+exports.load = function(sql) {
     return new Promise((resolve, reject) => {
         var cn = createConnection();
         cn.connect();
-        cn.query(sql, (err, rows, fields) => {
-            if (err) {
-            	reject(err);
+        cn.query(sql, function(error, rows, fields) {
+            if (error) {
+                reject(error);
             } else {
-            	resolve(rows);
+                resolve(rows);
+            }
+
+            cn.end();
+        });
+    });
+}
+
+exports.insert = function(sql) {
+    return new Promise((resolve, reject) => {
+        var cn = createConnection();
+        cn.connect();
+        cn.query(sql, function(error, value) {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(value.insertId);
+            }
+
+            cn.end();
+        });
+    });
+}
+
+exports.delete = function(sql) {
+    return new Promise((resolve, reject) => {
+        var cn = createConnection();
+        cn.connect();
+        cn.query(sql, function(error, value) {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(value.affectedRows);
             }
 
             cn.end();
