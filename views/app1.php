@@ -1,4 +1,4 @@
-<h2 style="text-align: center">Book a car?</h2>
+<h2 style="text-align: center">Book a car</h2>
 <div class="container" style="width: 40%; border: 1px solid black; padding: 20px; margin-bottom: 100px;">
 
     <form>

@@ -21,7 +21,7 @@ app.use(cors());
 
 app.use('/bookings', bookingController);
 
-app.use('/users', userController);
+app.use('/api/users', userController);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
