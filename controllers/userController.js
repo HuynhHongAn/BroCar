@@ -6,17 +6,34 @@ var userRepo = require('../repos/userRepo'),
 
 var router = express.Router();
 
-router.post('/', (req, res) => {
-    userRepo.add(req.body)
-        .then(insertId => {
-            res.statusCode = 201;
-            res.json(req.body);
+router.post('/register', (req, res) => {
+    var phoneNumber = req.body.phone_number
+    userRepo.checkExistedUser(phoneNumber)
+        .then(checked => {
+            if (checked){
+                res.json({
+                    'message': 'User existed!'
+                })
+            }
+            else {
+                userRepo.add(req.body)
+                    .then(insertId => {
+                        res.statusCode = 201;
+                        res.json(req.body);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.statusCode = 500;
+                        res.end();
+                    });
+            }
         })
         .catch(err => {
             console.log(err);
             res.statusCode = 500;
-            res.end();
-        });
+            res.end('View error log on console.');
+        })
+
 });
 
 router.post('/captcha', (req, res) => {

@@ -16,13 +16,15 @@ $(function() {
 });
 
 $(document).ready(function () {
+
+    $('#alert-register')
     $('#btn-register').on('click', function (e) {
         e.preventDefault();
         var fullName = $('#form-register #full_name').val();
         var password = $('#form-register #password').val();
         var phoneNumber = $('#form-register #phone_number').val();
         $.ajax({
-            url: 'http://localhost:3000/api/users',
+            url: 'http://localhost:3000/api/users/register',
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
@@ -34,7 +36,12 @@ $(document).ready(function () {
             }),
             timeout: 10000
         }).done(function(data) {
-            location.href = "/index.php?page=login";
+            if (typeof data.message !== 'undefined' ){
+                $('#alert-register').css('display', 'block')
+            }
+            else {
+                location.href = "/index.php?page=login";
+            }
         });
     });
 });

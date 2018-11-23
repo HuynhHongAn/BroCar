@@ -37,3 +37,18 @@ exports.load = function(id) {
     var sql = `select * from users where f_ID = ${id}`;
     return db.load(sql);
 }
+
+exports.checkExistedUser = function (phoneNumber) {
+    return new Promise((resolve, reject) => {
+        var sql = `select * from users where phone_number = '${phoneNumber}'`;
+        db.load(sql)
+            .then(rows => {
+                if (rows.length > 0) {
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            })
+            .catch(err => reject(err));
+    });
+}

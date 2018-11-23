@@ -1,6 +1,9 @@
 <h2 style="text-align: center">Register</h2>
 <div class="container" style="width: 40%; border: 1px solid black; padding: 20px; margin-bottom: 100px;">
-
+    <div class="alert alert-danger alert-dismissible" id="alert-register" style="display: none">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Phone Number existed!
+    </div>
     <form id="form-register">
         <div class="form-group">
             <label for="full_name">Full Name</label>
