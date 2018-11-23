@@ -10,3 +10,8 @@ div.header {
     padding: 0;
 
 }
+
+.footer {
+    padding: 10px;
+    font-weight: 600;
+}

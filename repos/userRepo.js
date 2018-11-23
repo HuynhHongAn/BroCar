@@ -11,9 +11,8 @@ exports.add = function(poco) {
     //     DOB: '2000-09-01',
     //     Permission: 0
     // }
-
-    var md5_password = md5(poco.Password);
-    var sql = `insert into users(f_Username, f_Password, f_Name, f_Email, f_DOB, f_Permission) values('${poco.Username}', '${md5_password}', '${poco.Name}', '${poco.Email}', '${poco.DOB}', ${poco.Permission})`;
+    var md5_password = md5(poco.password);
+    var sql = `insert into users(full_name, password, phone_number, role) values('${poco.full_name}', '${md5_password}', '${poco.phone_number}', ${poco.role})`;
     return db.insert(sql);
 }
 
